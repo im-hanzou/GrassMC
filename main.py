@@ -34,11 +34,13 @@ invalid_accs_file = 'invalidaccs.txt'
 try:
     with open(filename, 'r', encoding='utf-8', errors='ignore') as file:
         for line in file:
-            try:
-                email, password = line.strip().split('|')
-            except ValueError:
+            parts = line.strip().split('|')
+            if len(parts) < 2:
                 print(f"{Fore.RED}[ Invalid format in line: {line.strip()} ]{Fore.RESET}")
                 continue
+            
+            email = parts[0]
+            password = '|'.join(parts[1:])
             
             data = {'username': email, 'password': password}
             response = requests.post(url, headers=headers, json=data)
