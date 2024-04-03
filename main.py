@@ -63,5 +63,3 @@ try:
 
 except FileNotFoundError:
     print(f"{Fore.RED} File not found :) {Fore.RESET}")
-except UnicodeDecodeError as e:
-    print(f"{Fore.RED}Error opening file: {e}{Fore.RESET}")
