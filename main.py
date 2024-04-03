@@ -32,7 +32,7 @@ invalid_pass_file = 'invalidpass.txt'
 invalid_accs_file = 'invalidaccs.txt'
 
 try:
-    with open(filename, 'r') as file:
+    with open(filename, 'r', encoding='utf-8') as file:
         for line in file:
             try:
                 email, password = line.strip().split('|')
@@ -63,3 +63,5 @@ try:
 
 except FileNotFoundError:
     print(f"{Fore.RED} File not found :) {Fore.RESET}")
+except UnicodeDecodeError as e:
+    print(f"{Fore.RED}Error opening file: {e}{Fore.RESET}")
