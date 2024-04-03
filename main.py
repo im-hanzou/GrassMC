@@ -32,7 +32,7 @@ invalid_pass_file = 'invalidpass.txt'
 invalid_accs_file = 'invalidaccs.txt'
 
 try:
-    with open(filename, 'r', encoding='utf-8') as file:
+    with open(filename, 'r', encoding='utf-8', errors='ignore') as file:
         for line in file:
             try:
                 email, password = line.strip().split('|')
